@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>विद्युत सुरक्षा | JN Lighting India LLP</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --orange: #FF6B00;
+  --orange-light: #FF9A40;
+  --danger: #E63946;
+  --safe: #2EC4B6;
+  --yellow: #FFD60A;
+  --blue: #4fc3f7;
+  --electric: #7DF9FF;
+  --dark: #0A0E1A;
+  --dark2: #141828;
+  --dark3: #1E2438;
+  --card: #1a1f35;
+  --text: #F0F4FF;
+  --text-muted: #8892b0;
+  --white: #ffffff;
+  --stripe: repeating-linear-gradient(45deg,#FFD60A,#FFD60A 12px,#E63946 12px,#E63946 24px);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--dark);color:var(--text);font-family:'Noto Sans Devanagari',sans-serif;font-size:16px;line-height:1.7;overflow-x:hidden;}
+
+#audio-indicator{position:fixed;bottom:20px;right:20px;z-index:9999;background:var(--orange);border-radius:50px;padding:10px 18px;font-size:13px;font-weight:700;color:#fff;display:flex;align-items:center;gap:8px;box-shadow:0 4px 24px rgba(255,107,0,0.5);transition:all 0.3s;pointer-events:none;}
+#audio-indicator.speaking{background:var(--safe);box-shadow:0 4px 24px rgba(46,196,182,0.5);}
+.audio-waves{display:flex;gap:2px;align-items:center;height:16px;}
+.audio-waves span{width:3px;background:white;border-radius:2px;animation:wave 0.8s ease-in-out infinite;}
+.audio-waves span:nth-child(1){height:5px;animation-delay:0s;}
+.audio-waves span:nth-child(2){height:12px;animation-delay:0.1s;}
+.audio-waves span:nth-child(3){height:8px;animation-delay:0.2s;}
+.audio-waves span:nth-child(4){height:14px;animation-delay:0.3s;}
+.audio-waves span:nth-child(5){height:6px;animation-delay:0.4s;}
+@keyframes wave{0%,100%{transform:scaleY(1);}50%{transform:scaleY(1.8);}}
+
+.warning-stripe{height:10px;background:var(--stripe);width:100%;}
+
+.tool-nav{background:var(--dark2);border-bottom:1px solid rgba(255,255,255,0.07);padding:0 20px;overflow-x:auto;white-space:nowrap;display:flex;gap:0;scrollbar-width:none;}
+.tool-nav::-webkit-scrollbar{display:none;}
+.tool-tab{display:inline-flex;align-items:center;gap:8px;padding:14px 20px;font-size:13px;font-weight:700;color:var(--text-muted);cursor:pointer;border-bottom:3px solid transparent;transition:all 0.2s;white-space:nowrap;font-family:'Noto Sans Devanagari',sans-serif;}
+.tool-tab:hover{color:var(--text);background:rgba(255,255,255,0.03);}
+.tool-tab.active{color:var(--yellow);border-bottom-color:var(--yellow);}
+
+.hero{background:linear-gradient(160deg,#0A0E1A 0%,#0d1520 60%,#151025 100%);padding:50px 20px 60px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-100px;left:-100px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(255,214,10,0.10) 0%,transparent 70%);}
+.hero::after{content:'';position:absolute;bottom:-80px;right:-80px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(125,249,255,0.08) 0%,transparent 70%);}
+.hero-badge{display:inline-block;background:rgba(255,214,10,0.12);border:1.5px solid rgba(255,214,10,0.4);color:var(--yellow);padding:6px 18px;border-radius:50px;font-size:13px;font-weight:600;letter-spacing:1px;margin-bottom:20px;animation:pulse-border 2s ease-in-out infinite;}
+@keyframes pulse-border{0%,100%{box-shadow:0 0 0 0 rgba(255,214,10,0.4);}50%{box-shadow:0 0 0 8px rgba(255,214,10,0);}}
+.hero h1{font-size:clamp(26px,5.5vw,50px);font-weight:900;line-height:1.15;color:var(--white);margin-bottom:8px;}
+.hero h1 .accent{color:var(--yellow);}
+.hero h1 .accent2{color:var(--electric);}
+.hero-sub{font-size:clamp(14px,3vw,18px);color:var(--safe);font-weight:600;margin-bottom:16px;}
+.hero-desc{font-size:15px;color:var(--text-muted);max-width:540px;margin:0 auto 30px;}
+.hero-touch-hint{display:inline-flex;align-items:center;gap:8px;background:rgba(125,249,255,0.10);border:1px solid rgba(125,249,255,0.3);color:var(--electric);padding:10px 20px;border-radius:50px;font-size:14px;font-weight:600;animation:float 2s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);}}
+
+.tool-page{display:none;}
+.tool-page.active{display:block;}
+
+.section{padding:50px 20px;max-width:900px;margin:0 auto;}
+.section-title{font-size:clamp(22px,4vw,30px);font-weight:800;margin-bottom:8px;text-align:center;}
+.section-title .hi{color:var(--yellow);}
+.section-title .safe{color:var(--safe);}
+.section-title .el{color:var(--electric);}
+.section-subtitle{text-align:center;color:var(--text-muted);font-size:14px;margin-bottom:32px;}
+.divider{width:60px;height:4px;background:linear-gradient(90deg,var(--yellow),var(--electric));border-radius:2px;margin:12px auto 32px;}
+.section-sep{width:100%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.07),transparent);}
+
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;}
+.card{background:var(--card);border-radius:16px;padding:24px;border:1px solid rgba(255,255,255,0.06);transition:transform 0.2s,box-shadow 0.2s;cursor:pointer;position:relative;overflow:hidden;}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:16px 16px 0 0;}
+.card.danger::before{background:linear-gradient(90deg,var(--danger),#ff8a80);}
+.card.safe::before{background:linear-gradient(90deg,var(--safe),#80ffd4);}
+.card.warning::before{background:linear-gradient(90deg,var(--yellow),var(--orange));}
+.card.electric::before{background:linear-gradient(90deg,var(--electric),var(--blue));}
+.card:hover,.card:active{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.4);}
+.card-icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:14px;}
+.card.danger .card-icon{background:rgba(230,57,70,0.15);}
+.card.safe .card-icon{background:rgba(46,196,182,0.15);}
+.card.warning .card-icon{background:rgba(255,214,10,0.15);}
+.card.electric .card-icon{background:rgba(125,249,255,0.12);}
+.card h3{font-size:17px;font-weight:700;margin-bottom:8px;}
+.card p{font-size:14px;color:var(--text-muted);line-height:1.65;}
+
+.steps-list{display:flex;flex-direction:column;gap:14px;}
+.step{display:flex;gap:16px;align-items:flex-start;background:var(--card);border-radius:14px;padding:18px;border:1px solid rgba(255,255,255,0.05);cursor:pointer;transition:transform 0.2s;}
+.step:hover,.step:active{transform:translateX(6px);}
+.step-num{min-width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--yellow),var(--electric));color:var(--dark);font-weight:900;font-size:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 16px rgba(255,214,10,0.4);}
+.step-content h4{font-size:16px;font-weight:700;margin-bottom:4px;}
+.step-content p{font-size:14px;color:var(--text-muted);line-height:1.6;}
+
+.do-dont-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:480px){.do-dont-grid{grid-template-columns:1fr;}}
+.do-block,.dont-block{border-radius:14px;padding:20px;cursor:pointer;}
+.do-block{background:rgba(46,196,182,0.08);border:1.5px solid rgba(46,196,182,0.25);}
+.dont-block{background:rgba(230,57,70,0.08);border:1.5px solid rgba(230,57,70,0.25);}
+.do-header{display:flex;align-items:center;gap:8px;font-weight:800;font-size:17px;color:var(--safe);margin-bottom:12px;}
+.dont-header{display:flex;align-items:center;gap:8px;font-weight:800;font-size:17px;color:var(--danger);margin-bottom:12px;}
+.do-block li,.dont-block li{font-size:14px;color:var(--text);margin-bottom:8px;padding-left:20px;position:relative;line-height:1.55;list-style:none;}
+.do-block li::before{content:'✔';position:absolute;left:0;color:var(--safe);}
+.dont-block li::before{content:'✘';position:absolute;left:0;color:var(--danger);}
+
+.ppe-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(115px,1fr));gap:12px;}
+.ppe-item{background:var(--card);border-radius:14px;padding:16px 10px;text-align:center;border:1px solid rgba(255,255,255,0.06);cursor:pointer;transition:transform 0.2s,border-color 0.2s;}
+.ppe-item:hover,.ppe-item:active{transform:translateY(-4px);border-color:rgba(255,214,10,0.4);}
+.ppe-icon{font-size:34px;margin-bottom:8px;display:block;}
+.ppe-name{font-size:12px;font-weight:700;color:var(--text);line-height:1.4;}
+
+.danger-alert{background:rgba(230,57,70,0.12);border:2px solid rgba(230,57,70,0.4);border-radius:16px;padding:24px;display:flex;gap:16px;align-items:flex-start;cursor:pointer;margin-bottom:20px;}
+.danger-alert-icon{font-size:36px;flex-shrink:0;}
+.danger-alert h3{font-size:18px;font-weight:800;color:var(--danger);margin-bottom:6px;}
+.danger-alert p{font-size:14px;color:#ffb3b8;line-height:1.65;}
+
+.electric-alert{background:rgba(125,249,255,0.06);border:2px solid rgba(125,249,255,0.3);border-radius:16px;padding:24px;display:flex;gap:16px;align-items:flex-start;cursor:pointer;margin-bottom:20px;}
+.electric-alert h3{font-size:18px;font-weight:800;color:var(--electric);margin-bottom:6px;}
+.electric-alert p{font-size:14px;color:#b2f5ff;line-height:1.65;}
+
+.quiz-card{background:var(--card);border-radius:16px;padding:24px;border:1px solid rgba(255,255,255,0.07);margin-bottom:14px;}
+.quiz-q{font-size:16px;font-weight:700;margin-bottom:16px;}
+.quiz-options{display:flex;flex-direction:column;gap:8px;}
+.quiz-option{background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.10);border-radius:10px;padding:12px 16px;font-size:14px;cursor:pointer;transition:all 0.2s;color:var(--text);text-align:left;font-family:'Noto Sans Devanagari',sans-serif;}
+.quiz-option:hover{background:rgba(255,214,10,0.08);border-color:rgba(255,214,10,0.4);}
+.quiz-option.correct{background:rgba(46,196,182,0.15);border-color:var(--safe);color:var(--safe);}
+.quiz-option.wrong{background:rgba(230,57,70,0.15);border-color:var(--danger);color:var(--danger);}
+.quiz-feedback{margin-top:12px;font-size:14px;font-weight:600;display:none;}
+
+.emergency-box{background:linear-gradient(135deg,rgba(230,57,70,0.15),rgba(255,107,0,0.10));border:2px solid rgba(230,57,70,0.5);border-radius:20px;padding:30px 24px;text-align:center;cursor:pointer;}
+.emergency-box h2{font-size:22px;font-weight:900;color:var(--danger);margin-bottom:12px;}
+.emergency-box p{font-size:14px;color:var(--text-muted);margin-bottom:20px;}
+.emergency-steps{display:flex;flex-direction:column;gap:8px;text-align:left;}
+.e-step{display:flex;gap:12px;align-items:center;background:rgba(255,255,255,0.04);border-radius:10px;padding:10px 14px;font-size:14px;font-weight:600;}
+.e-step-num{width:28px;height:28px;border-radius:50%;background:var(--danger);color:white;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+
+/* Voltage level boxes */
+.voltage-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:20px;}
+.voltage-box{border-radius:14px;padding:18px;text-align:center;cursor:pointer;border:1.5px solid;}
+.voltage-box.low{background:rgba(46,196,182,0.08);border-color:rgba(46,196,182,0.3);}
+.voltage-box.med{background:rgba(255,214,10,0.08);border-color:rgba(255,214,10,0.3);}
+.voltage-box.high{background:rgba(230,57,70,0.10);border-color:rgba(230,57,70,0.4);}
+.voltage-box .v-num{font-size:26px;font-weight:900;display:block;margin-bottom:6px;}
+.voltage-box.low .v-num{color:var(--safe);}
+.voltage-box.med .v-num{color:var(--yellow);}
+.voltage-box.high .v-num{color:var(--danger);}
+.voltage-box .v-label{font-size:12px;color:var(--text-muted);}
+
+.svg-box{background:var(--card);border-radius:16px;padding:20px;margin-bottom:20px;cursor:pointer;}
+.score-board{background:linear-gradient(135deg,rgba(46,196,182,0.1),rgba(255,214,10,0.08));border:1px solid rgba(46,196,182,0.25);border-radius:14px;padding:16px 20px;text-align:center;margin-top:16px;font-size:15px;font-weight:700;}
+
+.speaking-el{outline:2px solid var(--safe);outline-offset:4px;border-radius:8px;}
+.fade-in{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+
+footer{background:var(--dark2);text-align:center;padding:30px 20px;border-top:1px solid rgba(255,255,255,0.06);color:var(--text-muted);font-size:13px;}
+footer strong{color:var(--yellow);}
+
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:var(--dark);}
+::-webkit-scrollbar-thumb{background:var(--yellow);border-radius:3px;}
+</style>
+</head>
+<body>
+
+<div id="audio-indicator">
+  <div class="audio-waves"><span></span><span></span><span></span><span></span><span></span></div>
+  <span id="audio-label">छूएं — सुनें</span>
+</div>
+
+<div class="warning-stripe"></div>
+
+<!-- HERO -->
+<div class="hero" data-speak="नमस्ते! जेएन लाइटिंग इंडिया एलएलपी के विद्युत सुरक्षा प्रशिक्षण में आपका स्वागत है। बिजली का काम सबसे खतरनाक कामों में से एक है। बिजली का झटका एक सेकंड में जानलेवा हो सकता है। इस प्रशिक्षण में विद्युत कार्य के सभी सुरक्षा नियम दिए गए हैं। कहीं भी छूएं और हिंदी में सुनें। सुरक्षित रहें!">
+  <div class="hero-badge">⚡ विद्युत सुरक्षा — JN Lighting India LLP</div>
+  <h1><span class="accent">विद्युत</span> <span class="accent2">सुरक्षा</span></h1>
+  <div class="hero-sub">Electrical Safety — सही ज्ञान, सुरक्षित जीवन</div>
+  <p class="hero-desc">Prepared by: <strong style="color:var(--yellow);">Ankit Verma</strong> — EHS Manager, JN Lighting India LLP<br>बिजली अदृश्य है — लेकिन उसका खतरा बहुत असली है।</p>
+  <div class="hero-touch-hint">👆 कहीं भी छूएं — हिंदी में सुनें</div>
+
+  <!-- Hero SVG -->
+  <div style="margin-top:30px;">
+    <svg viewBox="0 0 380 210" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:400px;height:auto;">
+      <defs>
+        <radialGradient id="glowY" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#FFD60A" stop-opacity="0.25"/><stop offset="100%" stop-color="#FFD60A" stop-opacity="0"/></radialGradient>
+        <radialGradient id="glowB" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#7DF9FF" stop-opacity="0.2"/><stop offset="100%" stop-color="#7DF9FF" stop-opacity="0"/></radialGradient>
+        <filter id="glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <rect width="380" height="210" fill="#0d1520" rx="14"/>
+      <ellipse cx="120" cy="105" rx="80" ry="70" fill="url(#glowY)"/>
+      <ellipse cx="270" cy="105" rx="70" ry="65" fill="url(#glowB)"/>
+
+      <!-- Electrical panel / Distribution board -->
+      <rect x="20" y="30" width="90" height="150" rx="8" fill="#1a2540"/>
+      <rect x="20" y="30" width="90" height="18" rx="6" fill="#253060"/>
+      <text x="65" y="43" font-family="Noto Sans Devanagari" font-size="7.5" fill="#7DF9FF" text-anchor="middle" font-weight="bold">DB Panel</text>
+      <!-- Breakers -->
+      <rect x="30" y="56" width="30" height="12" rx="3" fill="#E63946"/>
+      <rect x="30" y="74" width="30" height="12" rx="3" fill="#2EC4B6"/>
+      <rect x="30" y="92" width="30" height="12" rx="3" fill="#2EC4B6"/>
+      <rect x="30" y="110" width="30" height="12" rx="3" fill="#FFD60A"/>
+      <rect x="30" y="128" width="30" height="12" rx="3" fill="#2EC4B6"/>
+      <rect x="30" y="146" width="30" height="12" rx="3" fill="#E63946"/>
+      <!-- Labels -->
+      <text x="68" y="65" font-family="sans-serif" font-size="7" fill="#ff8a80">MAIN</text>
+      <text x="68" y="83" font-family="sans-serif" font-size="7" fill="#7DF9FF">L1</text>
+      <text x="68" y="101" font-family="sans-serif" font-size="7" fill="#7DF9FF">L2</text>
+      <text x="68" y="119" font-family="sans-serif" font-size="7" fill="#FFD60A">L3</text>
+      <text x="68" y="137" font-family="sans-serif" font-size="7" fill="#7DF9FF">AC</text>
+      <text x="68" y="155" font-family="sans-serif" font-size="7" fill="#ff8a80">ELT</text>
+
+      <!-- Wires going right -->
+      <line x1="110" y1="90" x2="160" y2="90" stroke="#E63946" stroke-width="3" stroke-linecap="round"/>
+      <line x1="110" y1="100" x2="160" y2="100" stroke="#1e90ff" stroke-width="3" stroke-linecap="round"/>
+      <line x1="110" y1="110" x2="160" y2="110" stroke="#333" stroke-width="3" stroke-linecap="round"/>
+
+      <!-- LOTO Lock symbol (center) -->
+      <rect x="155" y="70" width="60" height="70" rx="10" fill="#1a2540" stroke="rgba(255,214,10,0.5)" stroke-width="2"/>
+      <rect x="168" y="55" width="34" height="28" rx="12" fill="none" stroke="#FFD60A" stroke-width="4"/>
+      <circle cx="185" cy="105" r="12" fill="#FFD60A"/>
+      <rect x="182" y="105" width="6" height="14" rx="2" fill="#0d1520"/>
+      <text x="185" y="155" font-family="Noto Sans Devanagari" font-size="8" fill="#FFD60A" text-anchor="middle" font-weight="bold">LOTO</text>
+
+      <!-- Electrician figure (right side) -->
+      <!-- Insulating gloves -->
+      <rect x="272" y="118" width="14" height="24" rx="5" fill="#E63946"/><!-- left glove red insulating -->
+      <rect x="310" y="118" width="14" height="24" rx="5" fill="#E63946"/><!-- right glove -->
+      <!-- Body with PPE vest -->
+      <rect x="278" y="84" width="40" height="36" rx="6" fill="#FF6B00"/>
+      <!-- Reflective strips -->
+      <rect x="278" y="97" width="40" height="4" fill="#FFD60A" opacity="0.9"/>
+      <!-- Head + helmet -->
+      <circle cx="298" cy="72" r="12" fill="#FDBCB4"/>
+      <ellipse cx="298" cy="63" rx="14" ry="9" fill="#FFD60A"/>
+      <rect x="283" y="66" width="30" height="6" fill="#FFC107" rx="2"/>
+      <!-- Face shield -->
+      <rect x="285" y="68" width="26" height="16" rx="3" fill="rgba(125,249,255,0.25)" stroke="#7DF9FF" stroke-width="1.5"/>
+      <!-- Legs -->
+      <rect x="282" y="120" width="14" height="36" rx="4" fill="#263040"/>
+      <rect x="298" y="120" width="14" height="36" rx="4" fill="#263040"/>
+      <!-- Insulating boots -->
+      <rect x="278" y="153" width="20" height="12" rx="4" fill="#E63946"/>
+      <rect x="296" y="153" width="20" height="12" rx="4" fill="#E63946"/>
+
+      <!-- Multimeter tool in hand -->
+      <rect x="315" y="98" width="24" height="32" rx="4" fill="#333"/>
+      <rect x="317" y="100" width="20" height="14" rx="2" fill="#1a3060"/>
+      <circle cx="327" cy="122" r="5" fill="#2EC4B6"/>
+      <line x1="327" y1="130" x2="327" y2="145" stroke="#E63946" stroke-width="2"/>
+      <line x1="327" y1="145" x2="320" y2="158" stroke="#E63946" stroke-width="2"/>
+      <circle cx="320" cy="160" r="3" fill="#E63946"/>
+
+      <!-- Lightning bolt warning -->
+      <polygon points="248,50 238,80 248,75 235,105 255,68 245,72" fill="#FFD60A" filter="url(#glow)" opacity="0.9">
+        <animate attributeName="opacity" values="0.9;0.3;0.9" dur="1.5s" repeatCount="indefinite"/>
+      </polygon>
+
+      <!-- PPE Labels bottom -->
+      <rect x="10" y="175" width="360" height="28" rx="6" fill="rgba(125,249,255,0.07)" stroke="rgba(125,249,255,0.2)" stroke-width="1"/>
+      <text x="20" y="184" font-size="15">⛑️</text><text x="50" y="184" font-size="15">🧤</text>
+      <text x="80" y="184" font-size="15">👟</text><text x="110" y="184" font-size="15">🥽</text>
+      <text x="140" y="184" font-size="15">🦺</text><text x="170" y="184" font-size="15">🔒</text>
+      <text x="220" y="193" font-family="Noto Sans Devanagari" font-size="9" fill="#7DF9FF">विद्युत कार्य के लिए अनिवार्य PPE</text>
+    </svg>
+  </div>
+</div>
+
+<!-- NAV TABS -->
+<div class="tool-nav">
+  <div class="tool-tab active" onclick="showTab('basics')" id="tab-basics">⚡ बुनियादी खतरे</div>
+  <div class="tool-tab" onclick="showTab('loto')" id="tab-loto">🔒 LOTO प्रक्रिया</div>
+  <div class="tool-tab" onclick="showTab('ppe')" id="tab-ppe">🦺 PPE और उपकरण</div>
+  <div class="tool-tab" onclick="showTab('wiring')" id="tab-wiring">🔌 वायरिंग और पैनल</div>
+  <div class="tool-tab" onclick="showTab('emergency')" id="tab-emergency">🚨 आपात स्थिति</div>
+  <div class="tool-tab" onclick="showTab('quiz')" id="tab-quiz">🧠 क्विज़</div>
+</div>
+
+<div class="warning-stripe"></div>
+
+<!-- ════════════════════════
+     TAB 1: BASICS / HAZARDS
+════════════════════════ -->
+<div id="page-basics" class="tool-page active">
+
+  <div class="section fade-in">
+    <div class="section-title" data-speak="बिजली के मुख्य खतरे। बिजली का झटका, आग, और विस्फोट — ये तीन मुख्य खतरे हैं। भारत में हर साल लगभग 15 सौ लोग बिजली के कारण मरते हैं। 50 वोल्ट से अधिक बिजली जानलेवा हो सकती है।">⚡ बिजली के <span class="hi">मुख्य खतरे</span></div>
+    <div class="divider"></div>
+
+    <div class="danger-alert" data-speak="खतरनाक आँकड़े! भारत में बिजली से होने वाली मौतें सबसे अधिक हैं। मात्र 50 मिलीएम्पियर की धारा — जो एक छोटे बल्ब जितनी है — दिल को रोक सकती है। बिजली का झटका लगने पर व्यक्ति 1 सेकंड में बेहोश हो सकता है।">
+      <div class="danger-alert-icon">☠️</div>
+      <div>
+        <h3>जानलेवा आँकड़े!</h3>
+        <p>मात्र <strong>50mA (0.05A)</strong> की धारा दिल को रोक सकती है। <strong>230V AC</strong> घरेलू बिजली भी जानलेवा है। भारत में बिजली से प्रतिवर्ष <strong>~1500 मौतें</strong> होती हैं।</p>
+      </div>
+    </div>
+
+    <!-- Voltage danger levels -->
+    <div class="voltage-grid">
+      <div class="voltage-box low" data-speak="50 वोल्ट तक — अपेक्षाकृत सुरक्षित। लेकिन गीले हाथों से यह भी खतरनाक हो सकता है। बैटरी सिस्टम इसी श्रेणी में आते हैं।">
+        <span class="v-num">≤50V</span>
+        <div style="font-weight:700;color:var(--safe);margin-bottom:4px;">कम खतरा</div>
+        <div class="v-label">सूखे हाथ — सापेक्षतः सुरक्षित<br>गीले हाथ — खतरनाक</div>
+      </div>
+      <div class="voltage-box med" data-speak="230 वोल्ट — घरेलू बिजली। यह जानलेवा है। इस पर काम करने से पहले हमेशा मुख्य स्विच बंद करें। यह सबसे आम खतरा है।">
+        <span class="v-num">230V</span>
+        <div style="font-weight:700;color:var(--yellow);margin-bottom:4px;">⚠ बहुत खतरनाक</div>
+        <div class="v-label">घरेलू बिजली (AC)<br>हमेशा बंद कर काम करें</div>
+      </div>
+      <div class="voltage-box high" data-speak="415 वोल्ट तीन फेज — औद्योगिक बिजली। यह बेहद खतरनाक है। केवल लाइसेंस प्राप्त इलेक्ट्रीशियन ही इस पर काम करें।">
+        <span class="v-num">415V</span>
+        <div style="font-weight:700;color:var(--danger);margin-bottom:4px;">☠ अत्यंत खतरनाक</div>
+        <div class="v-label">3-Phase औद्योगिक<br>केवल लाइसेंस धारक</div>
+      </div>
+      <div class="voltage-box high" data-speak="11 किलोवोल्ट और उससे अधिक — हाई टेंशन लाइन। इसके पास जाना भी खतरनाक है। बिजली हवा में भी कूद सकती है। कभी हाई टेंशन तारों के पास न जाएं।">
+        <span class="v-num">11kV+</span>
+        <div style="font-weight:700;color:var(--danger);margin-bottom:4px;">☠☠ जानलेवा</div>
+        <div class="v-label">HT Line — पास न जाएं<br>बिजली हवा में कूद सकती है</div>
+      </div>
+    </div>
+
+    <!-- Human body current effects diagram -->
+    <div class="svg-box" data-speak="बिजली का शरीर पर प्रभाव। 1 मिलीएम्पियर — हल्की झनझनाहट। 10 मिलीएम्पियर — मांसपेशियाँ जकड़ जाती हैं। 50 मिलीएम्पियर — दिल की धड़कन अनियमित होती है। 100 मिलीएम्पियर — दिल रुक जाता है। यह बहुत कम मात्रा है। इसलिए बिजली बहुत खतरनाक है।">
+      <svg viewBox="0 0 680 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+        <rect width="680" height="280" fill="#141828" rx="12"/>
+        <text x="340" y="26" font-family="Noto Sans Devanagari" font-size="14" fill="#FFD60A" text-anchor="middle" font-weight="bold">बिजली का शरीर पर प्रभाव — Current Effect on Body</text>
+
+        <!-- Current scale bar -->
+        <rect x="60" y="50" width="560" height="20" rx="10" fill="url(#safeToHigh)"/>
+        <defs>
+          <linearGradient id="safeToHigh" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#2EC4B6"/>
+            <stop offset="40%" stop-color="#FFD60A"/>
+            <stop offset="70%" stop-color="#FF6B00"/>
+            <stop offset="100%" stop-color="#E63946"/>
+          </linearGradient>
+        </defs>
+
+        <!-- Effect boxes -->
+        <!-- 1mA -->
+        <line x1="110" y1="70" x2="110" y2="100" stroke="#2EC4B6" stroke-width="2"/>
+        <rect x="60" y="100" width="110" height="55" rx="8" fill="rgba(46,196,182,0.10)" stroke="rgba(46,196,182,0.4)" stroke-width="1.5"/>
+        <text x="115" y="114" font-family="sans-serif" font-size="11" fill="#2EC4B6" text-anchor="middle" font-weight="bold">1 mA</text>
+        <text x="115" y="128" font-family="Noto Sans Devanagari" font-size="9" fill="#b2f5ff" text-anchor="middle">हल्की</text>
+        <text x="115" y="142" font-family="Noto Sans Devanagari" font-size="9" fill="#b2f5ff" text-anchor="middle">झनझनाहट</text>
+
+        <!-- 10mA -->
+        <line x1="250" y1="70" x2="250" y2="100" stroke="#FFD60A" stroke-width="2"/>
+        <rect x="195" y="100" width="115" height="55" rx="8" fill="rgba(255,214,10,0.10)" stroke="rgba(255,214,10,0.4)" stroke-width="1.5"/>
+        <text x="252" y="114" font-family="sans-serif" font-size="11" fill="#FFD60A" text-anchor="middle" font-weight="bold">10 mA</text>
+        <text x="252" y="128" font-family="Noto Sans Devanagari" font-size="9" fill="#fff7aa" text-anchor="middle">मांसपेशियाँ</text>
+        <text x="252" y="142" font-family="Noto Sans Devanagari" font-size="9" fill="#fff7aa" text-anchor="middle">जकड़ जाती हैं</text>
+
+        <!-- 50mA -->
+        <line x1="400" y1="70" x2="400" y2="100" stroke="#FF6B00" stroke-width="2"/>
+        <rect x="345" y="100" width="115" height="55" rx="8" fill="rgba(255,107,0,0.10)" stroke="rgba(255,107,0,0.4)" stroke-width="1.5"/>
+        <text x="402" y="114" font-family="sans-serif" font-size="11" fill="#FF9A40" text-anchor="middle" font-weight="bold">50 mA</text>
+        <text x="402" y="128" font-family="Noto Sans Devanagari" font-size="9" fill="#ffd4aa" text-anchor="middle">VF — दिल की</text>
+        <text x="402" y="142" font-family="Noto Sans Devanagari" font-size="9" fill="#ffd4aa" text-anchor="middle">धड़कन अनियमित</text>
+
+        <!-- 100mA+ -->
+        <line x1="560" y1="70" x2="560" y2="100" stroke="#E63946" stroke-width="2"/>
+        <rect x="510" y="100" width="120" height="55" rx="8" fill="rgba(230,57,70,0.12)" stroke="rgba(230,57,70,0.5)" stroke-width="1.5"/>
+        <text x="570" y="114" font-family="sans-serif" font-size="11" fill="#E63946" text-anchor="middle" font-weight="bold">100 mA+</text>
+        <text x="570" y="128" font-family="Noto Sans Devanagari" font-size="9" fill="#ffb3b8" text-anchor="middle">☠ दिल बंद</text>
+        <text x="570" y="142" font-family="Noto Sans Devanagari" font-size="9" fill="#ffb3b8" text-anchor="middle">मृत्यु संभव</text>
+
+        <!-- Body diagram (simple) -->
+        <circle cx="340" cy="195" r="14" fill="#FDBCB4"/>
+        <rect x="328" y="209" width="24" height="30" rx="5" fill="#FF6B00"/>
+        <rect x="313" y="212" width="15" height="22" rx="4" fill="#FDBCB4"/>
+        <rect x="352" y="212" width="15" height="22" rx="4" fill="#FDBCB4"/>
+        <rect x="330" y="239" width="10" height="22" rx="4" fill="#263040"/>
+        <rect x="344" y="239" width="10" height="22" rx="4" fill="#263040"/>
+
+        <!-- Electric current path through body -->
+        <path d="M 313 220 Q 290 215 280 230 Q 270 245 290 255 Q 320 265 340 260" fill="none" stroke="#FFD60A" stroke-width="2.5" stroke-dasharray="5,3" opacity="0.8">
+          <animate attributeName="stroke-dashoffset" values="0;-30" dur="1s" repeatCount="indefinite"/>
+        </path>
+        <circle cx="310" cy="218" r="5" fill="#FFD60A" opacity="0.9">
+          <animate attributeName="opacity" values="0.9;0.2;0.9" dur="1s" repeatCount="indefinite"/>
+        </circle>
+
+        <!-- Entry/Exit labels -->
+        <text x="298" y="210" font-family="Noto Sans Devanagari" font-size="8" fill="#FFD60A" text-anchor="middle">प्रवेश</text>
+        <text x="340" y="275" font-family="Noto Sans Devanagari" font-size="8" fill="#FFD60A" text-anchor="middle">निकास (ज़मीन)</text>
+
+        <!-- ELCB info box -->
+        <rect x="420" y="175" width="220" height="75" rx="8" fill="rgba(46,196,182,0.08)" stroke="rgba(46,196,182,0.3)" stroke-width="1.5"/>
+        <text x="530" y="193" font-family="Noto Sans Devanagari" font-size="10" fill="#2EC4B6" text-anchor="middle" font-weight="bold">🛡 ELCB/RCD सुरक्षा</text>
+        <text x="530" y="210" font-family="Noto Sans Devanagari" font-size="8.5" fill="#b2f5ff" text-anchor="middle">30mA रिसाव होने पर</text>
+        <text x="530" y="224" font-family="Noto Sans Devanagari" font-size="8.5" fill="#b2f5ff" text-anchor="middle">0.03 सेकंड में बिजली</text>
+        <text x="530" y="238" font-family="Noto Sans Devanagari" font-size="8.5" fill="#2EC4B6" text-anchor="middle" font-weight="bold">बंद कर देता है ✔</text>
+      </svg>
+    </div>
+
+    <div class="cards-grid">
+      <div class="card danger" data-speak="बिजली का झटका — यह सबसे आम खतरा है। दिल की धड़कन रुकना, जलना, और मांसपेशियों का संकुचन — ये सब बिजली के झटके से होता है। हमेशा लाइव तारों से दूर रहें।">
+        <div class="card-icon">⚡</div>
+        <h3>Electric Shock</h3>
+        <p><strong>50mA</strong> करंट दिल रोक सकती है। लाइव तार को कभी खुले हाथ न छुएं। ELCB हमेशा लगाएं।</p>
+      </div>
+      <div class="card danger" data-speak="विद्युत आग — शॉर्ट सर्किट, ओवरलोडिंग, और खराब वायरिंग से आग लग सकती है। बिजली की आग पर पानी कभी न डालें।">
+        <div class="card-icon">🔥</div>
+        <h3>Electrical Fire</h3>
+        <p>शॉर्ट सर्किट और ओवरलोडिंग से आग। <strong>बिजली की आग पर पानी बिल्कुल नहीं</strong> — CO₂ अग्निशामक उपयोग करें।</p>
+      </div>
+      <div class="card warning" data-speak="आर्क फ्लैश — उच्च वोल्टेज पर काम करते समय अचानक बिजली का चाप बन सकता है। इसकी गर्मी 20000 डिग्री तक होती है। फेस शील्ड और Arc Flash PPE जरूरी है।">
+        <div class="card-icon">💥</div>
+        <h3>Arc Flash</h3>
+        <p>उच्च वोल्टेज पर <strong>20,000°C तक</strong> का विस्फोट। Arc Flash PPE और Face Shield अनिवार्य।</p>
+      </div>
+      <div class="card electric" data-speak="ओवरलोडिंग — एक सॉकेट में बहुत अधिक उपकरण लगाने से केबल गर्म होकर आग लग सकती है। हमेशा सही क्षमता की केबल उपयोग करें।">
+        <div class="card-icon">🔌</div>
+        <h3>Overloading</h3>
+        <p>एक ही सर्किट पर <strong>अधिक लोड = केबल गर्म = आग</strong>। सही क्षमता की केबल उपयोग करें।</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-sep"></div>
+
+  <!-- Do Dont Basics -->
+  <div class="section fade-in">
+    <div class="section-title">✅ करें <span class="hi">और</span> ❌ न करें</div>
+    <div class="divider"></div>
+    <div class="do-dont-grid">
+      <div class="do-block" data-speak="बिजली के काम में यह करें। हमेशा LOTO प्रक्रिया का पालन करें। काम से पहले मल्टीमीटर से वोल्टेज जाँचें। इंसुलेटेड दस्ताने और PPE पहनें। एक हाथ से काम करें — दूसरा हाथ पीठ पर रखें। ELCB और MCB की जाँच करें।">
+        <div class="do-header">✅ करें</div>
+        <ul>
+          <li>LOTO प्रक्रिया का पालन करें</li>
+          <li>मल्टीमीटर से वोल्टेज जाँचें</li>
+          <li>इंसुलेटेड PPE पहनें</li>
+          <li>एक हाथ से काम करें</li>
+          <li>ELCB / MCB हमेशा लगाएं</li>
+          <li>लाइसेंस प्राप्त इलेक्ट्रीशियन से काम</li>
+          <li>Earthing की जाँच करें</li>
+          <li>PTW (Permit to Work) लें</li>
+        </ul>
+      </div>
+      <div class="dont-block" data-speak="बिजली के काम में यह न करें। लाइव तार को कभी खुले हाथ न छुएं। बिजली बंद किए बिना काम न करें। गीले हाथों से बिजली का काम न करें। बिजली की आग पर पानी न डालें। एक्सटेंशन कॉर्ड पर एक्सटेंशन कॉर्ड न लगाएं।">
+        <div class="dont-header">❌ न करें</div>
+        <ul>
+          <li>लाइव तार को खुले हाथ न छुएं</li>
+          <li>बिजली बंद किए बिना काम नहीं</li>
+          <li>गीले हाथों से काम नहीं</li>
+          <li>बिजली आग पर पानी नहीं</li>
+          <li>एक्सटेंशन पर एक्सटेंशन नहीं</li>
+          <li>क्षतिग्रस्त केबल उपयोग न करें</li>
+          <li>MCB को टेप से बंद न करें</li>
+          <li>बिना PTW काम शुरू नहीं</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════
+     TAB 2: LOTO
+════════════════════════ -->
+<div id="page-loto" class="tool-page">
+  <div class="section fade-in">
+    <div class="section-title" data-speak="LOTO — लॉकआउट टैगआउट। यह सबसे महत्वपूर्ण विद्युत सुरक्षा प्रक्रिया है। LOTO का मतलब है — काम से पहले बिजली पूरी तरह बंद करना और लॉक लगाना ताकि कोई दूसरा गलती से चालू न कर सके।">🔒 <span class="hi">LOTO</span> — Lockout Tagout</div>
+    <p class="section-subtitle">सबसे महत्वपूर्ण विद्युत सुरक्षा प्रक्रिया</p>
+    <div class="divider"></div>
+
+    <div class="electric-alert" data-speak="LOTO क्यों जरूरी है? हर साल अनगिनत दुर्घटनाएँ इसलिए होती हैं क्योंकि किसी ने गलती से बिजली चालू कर दी जबकि दूसरा व्यक्ति काम कर रहा था। LOTO इसी को रोकता है।">
+      <div style="font-size:36px;flex-shrink:0;">🔒</div>
+      <div>
+        <h3>LOTO क्यों जरूरी है?</h3>
+        <p>अनगिनत दुर्घटनाएँ इसलिए होती हैं क्योंकि काम के दौरान <strong>किसी ने गलती से बिजली चालू कर दी</strong>। LOTO यही रोकता है — ताला लगाओ, टैग लगाओ, सुरक्षित रहो।</p>
+      </div>
+    </div>
+
+    <!-- LOTO Procedure SVG -->
+    <div class="svg-box" data-speak="LOTO की सही प्रक्रिया — चरण एक: सभी उपकरण बंद करें। चरण दो: मुख्य MCB या स्विच बंद करें। चरण तीन: लॉक लगाएं — केवल आपके पास चाबी हो। चरण चार: लाल टैग लगाएं जिसमें आपका नाम, तारीख, और काम लिखा हो। चरण पाँच: मल्टीमीटर से जाँचें कि बिजली बंद है। चरण छह: काम करें — पूरी सुरक्षा के साथ।">
+      <svg viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+        <rect width="680" height="300" fill="#141828" rx="12"/>
+        <text x="340" y="26" font-family="Noto Sans Devanagari" font-size="14" fill="#FFD60A" text-anchor="middle" font-weight="bold">LOTO — सही प्रक्रिया (6 चरण)</text>
+
+        <!-- Step flow -->
+        <!-- Step 1 -->
+        <rect x="20" y="46" width="95" height="80" rx="10" fill="rgba(255,214,10,0.08)" stroke="rgba(255,214,10,0.4)" stroke-width="1.5"/>
+        <text x="67" y="68" font-size="22" text-anchor="middle">🔴</text>
+        <text x="67" y="86" font-family="Noto Sans Devanagari" font-size="8.5" fill="#FFD60A" text-anchor="middle" font-weight="bold">उपकरण</text>
+        <text x="67" y="98" font-family="Noto Sans Devanagari" font-size="8.5" fill="#FFD60A" text-anchor="middle" font-weight="bold">बंद करें</text>
+        <text x="67" y="116" font-family="Noto Sans Devanagari" font-size="8" fill="#8892b0" text-anchor="middle">Shutdown</text>
+        <rect x="42" y="50" width="20" height="20" rx="10" fill="#FFD60A"/>
+        <text x="52" y="63" font-family="sans-serif" font-size="11" fill="#0d1520" text-anchor="middle" font-weight="bold">1</text>
+
+        <!-- Arrow -->
+        <polygon points="118,86 128,82 128,90" fill="#FFD60A"/>
+        <line x1="115" y1="86" x2="128" y2="86" stroke="#FFD60A" stroke-width="2"/>
+
+        <!-- Step 2 -->
+        <rect x="130" y="46" width="95" height="80" rx="10" fill="rgba(255,107,0,0.08)" stroke="rgba(255,107,0,0.4)" stroke-width="1.5"/>
+        <text x="177" y="68" font-size="22" text-anchor="middle">🔌</text>
+        <text x="177" y="86" font-family="Noto Sans Devanagari" font-size="8.5" fill="#FF9A40" text-anchor="middle" font-weight="bold">MCB / Switch</text>
+        <text x="177" y="98" font-family="Noto Sans Devanagari" font-size="8.5" fill="#FF9A40" text-anchor="middle" font-weight="bold">बंद करें</text>
+        <text x="177" y="116" font-family="Noto Sans Devanagari" font-size="8" fill="#8892b0" text-anchor="middle">Isolation</text>
+        <rect x="152" y="50" width="20" height="20" rx="10" fill="#FF6B00"/>
+        <text x="162" y="63" font-family="sans-serif" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold">2</text>
+
+        <polygon points="228,86 238,82 238,90" fill="#FF6B00"/>
+        <line x1="225" y1="86" x2="238" y2="86" stroke="#FF6B00" stroke-width="2"/>
+
+        <!-- Step 3 -->
+        <rect x="240" y="46" width="95" height="80" rx="10" fill="rgba(230,57,70,0.08)" stroke="rgba(230,57,70,0.4)" stroke-width="1.5"/>
+        <text x="287" y="68" font-size="22" text-anchor="middle">🔒</text>
+        <text x="287" y="86" font-family="Noto Sans Devanagari" font-size="8.5" fill="#E63946" text-anchor="middle" font-weight="bold">लॉक लगाएं</text>
+        <text x="287" y="98" font-family="Noto Sans Devanagari" font-size="8.5" fill="#E63946" text-anchor="middle" font-weight="bold">(चाबी आपके पास)</text>
+        <text x="287" y="116" font-family="Noto Sans Devanagari" font-size="8" fill="#8892b0" text-anchor="middle">Lockout</text>
+        <rect x="262" y="50" width="20" height="20" rx="10" fill="#E63946"/>
+        <text x="272" y="63" font-family="sans-serif" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold">3</text>
+
+        <polygon points="338,86 348,82 348,90" fill="#E63946"/>
+        <line x1="335" y1="86" x2="348" y2="86" stroke="#E63946" stroke-width="2"/>
+
+        <!-- Step 4 -->
+        <rect x="350" y="46" width="95" height="80" rx="10" fill="rgba(125,249,255,0.06)" stroke="rgba(125,249,255,0.3)" stroke-width="1.5"/>
+        <text x="397" y="68" font-size="22" text-anchor="middle">🏷️</text>
+        <text x="397" y="86" font-family="Noto Sans Devanagari" font-size="8.5" fill="#7DF9FF" text-anchor="middle" font-weight="bold">लाल TAG</text>
+        <text x="397" y="98" font-family="Noto Sans Devanagari" font-size="8.5" fill="#7DF9FF" text-anchor="middle" font-weight="bold">लगाएं</text>
+        <text x="397" y="116" font-family="Noto Sans Devanagari" font-size="8" fill="#8892b0" text-anchor="middle">Tagout</text>
+        <rect x="372" y="50" width="20" height="20" rx="10" fill="#7DF9FF"/>
+        <text x="382" y="63" font-family="sans-serif" font-size="11" fill="#0d1520" text-anchor="middle" font-weight="bold">4</text>
+
+        <polygon points="448,86 458,82 458,90" fill="#7DF9FF"/>
+        <line x1="445" y1="86" x2="458" y2="86" stroke="#7DF9FF" stroke-width="2"/>
+
+        <!-- Step 5 -->
+        <rect x="460" y="46" width="95" height="80" rx="10" fill="rgba(46,196,182,0.08)" stroke="rgba(46,196,182,0.4)" stroke-width="1.5"/>
+        <text x="507" y="68" font-size="22" text-anchor="middle">🔬</text>
+        <text x="507" y="86" font-family="Noto Sans Devanagari" font-size="8.5" fill="#2EC4B6" text-anchor="middle" font-weight="bold">Multimeter</text>
+        <text x="507" y="98" font-family="Noto Sans Devanagari" font-size="8.5" fill="#2EC4B6" text-anchor="middle" font-weight="bold">से जाँचें</text>
+        <text x="507" y="116" font-family="Noto Sans Devanagari" font-size="8" fill="#8892b0" text-anchor="middle">Verify Zero</text>
+        <rect x="482" y="50" width="20" height="20" rx="10" fill="#2EC4B6"/>
+        <text x="492" y="63" font-family="sans-serif" font-size="11" fill="#0d1520" text-anchor="middle" font-weight="bold">5</text>
+
+        <polygon points="558,86 568,82 568,90" fill="#2EC4B6"/>
+        <line x1="555" y1="86" x2="568" y2="86" stroke="#2EC4B6" stroke-width="2"/>
+
+        <!-- Step 6 -->
+        <rect x="570" y="46" width="95" height="80" rx="10" fill="rgba(46,196,182,0.12)" stroke="rgba(46,196,182,0.5)" stroke-width="2"/>
+        <text x="617" y="68" font-size="22" text-anchor="middle">✅</text>
+        <text x="617" y="86" font-family="Noto Sans Devanagari" font-size="8.5" fill="#2EC4B6" text-anchor="middle" font-weight="bold">अब काम</text>
+        <text x="617" y="98" font-family="Noto Sans Devanagari" font-size="8.5" fill="#2EC4B6" text-anchor="middle" font-weight="bold">करें</text>
+        <text x="617" y="116" font-family="Noto Sans Devanagari" font-size="8" fill="#8892b0" text-anchor="middle">Work Safely</text>
+        <rect x="592" y="50" width="20" height="20" rx="10" fill="#2EC4B6"/>
+        <text x="602" y="63" font-family="sans-serif" font-size="11" fill="#0d1520" text-anchor="middle" font-weight="bold">6</text>
+
+        <!-- TAG detail -->
+        <rect x="60" y="155" width="180" height="120" rx="10" fill="rgba(230,57,70,0.12)" stroke="rgba(230,57,70,0.5)" stroke-width="2"/>
+        <rect x="60" y="155" width="180" height="26" rx="8" fill="#E63946"/>
+        <text x="150" y="172" font-family="Noto Sans Devanagari" font-size="12" fill="white" text-anchor="middle" font-weight="bold">⚠ खतरा — चालू न करें</text>
+        <text x="150" y="200" font-family="Noto Sans Devanagari" font-size="9" fill="#ffb3b8" text-anchor="middle">DO NOT ENERGIZE</text>
+        <text x="80" y="218" font-family="Noto Sans Devanagari" font-size="9" fill="#aaa">नाम:</text>
+        <line x1="104" y1="220" x2="228" y2="220" stroke="#555" stroke-width="1"/>
+        <text x="80" y="238" font-family="Noto Sans Devanagari" font-size="9" fill="#aaa">तारीख:</text>
+        <line x1="114" y1="240" x2="228" y2="240" stroke="#555" stroke-width="1"/>
+        <text x="80" y="256" font-family="Noto Sans Devanagari" font-size="9" fill="#aaa">काम:</text>
+        <line x1="104" y1="258" x2="228" y2="258" stroke="#555" stroke-width="1"/>
+        <text x="150" y="270" font-family="Noto Sans Devanagari" font-size="8" fill="#8892b0" text-anchor="middle">लाल TAG — LOTO अनिवार्य</text>
+
+        <!-- Lock + key visual -->
+        <rect x="280" y="160" width="180" height="110" rx="10" fill="rgba(255,214,10,0.08)" stroke="rgba(255,214,10,0.3)" stroke-width="1.5"/>
+        <text x="370" y="178" font-family="Noto Sans Devanagari" font-size="10" fill="#FFD60A" text-anchor="middle" font-weight="bold">🔑 नियम</text>
+        <text x="290" y="198" font-family="Noto Sans Devanagari" font-size="9" fill="#c8a96e">• हर कर्मचारी का अलग ताला</text>
+        <text x="290" y="214" font-family="Noto Sans Devanagari" font-size="9" fill="#c8a96e">• चाबी केवल उसी के पास</text>
+        <text x="290" y="230" font-family="Noto Sans Devanagari" font-size="9" fill="#c8a96e">• काम खत्म होने पर ही खोलें</text>
+        <text x="290" y="246" font-family="Noto Sans Devanagari" font-size="9" fill="#c8a96e">• Group LOTO — एक ताला/व्यक्ति</text>
+        <text x="290" y="262" font-family="Noto Sans Devanagari" font-size="9" fill="#E63946">• दूसरे की चाबी कभी न लें</text>
+
+        <!-- Warning box -->
+        <rect x="490" y="155" width="175" height="110" rx="10" fill="rgba(230,57,70,0.08)" stroke="rgba(230,57,70,0.35)" stroke-width="1.5"/>
+        <text x="578" y="175" font-family="Noto Sans Devanagari" font-size="10" fill="#E63946" text-anchor="middle" font-weight="bold">⚠ याद रखें!</text>
+        <text x="500" y="195" font-family="Noto Sans Devanagari" font-size="8.5" fill="#ffb3b8">LOTO के बिना काम =</text>
+        <text x="500" y="211" font-family="Noto Sans Devanagari" font-size="9" fill="#E63946" font-weight="bold">नियम का उल्लंघन</text>
+        <text x="500" y="228" font-family="Noto Sans Devanagari" font-size="8.5" fill="#ffb3b8">+ दुर्घटना का खतरा</text>
+        <text x="500" y="245" font-family="Noto Sans Devanagari" font-size="8.5" fill="#ffb3b8">+ कानूनी कार्रवाई</text>
+        <text x="578" y="262" font-family="Noto Sans Devanagari" font-size="8" fill="#8892b0" text-anchor="middle">Factories Act 1948</text>
+      </svg>
+    </div>
+
+    <div class="steps-list">
+      <div class="step" data-speak="LOTO चरण एक — सभी उपकरण बंद करें। काम से पहले संबंधित मशीन या उपकरण को सामान्य तरीके से बंद करें।">
+        <div class="step-num">१</div><div class="step-content"><h4>🔴 उपकरण बंद करें (Shutdown)</h4><p>संबंधित मशीन / उपकरण को सामान्य प्रक्रिया से बंद करें।</p></div>
+      </div>
+      <div class="step" data-speak="LOTO चरण दो — बिजली अलग करें। MCB, MCCB, या Isolator को OFF करें। पूरी तरह से बिजली काट दें।">
+        <div class="step-num">२</div><div class="step-content"><h4>🔌 बिजली अलग करें (Isolate)</h4><p>MCB / Isolator / MCCB को <strong>OFF करें</strong>। पूरी तरह बिजली काट दें।</p></div>
+      </div>
+      <div class="step" data-speak="LOTO चरण तीन — लॉक लगाएं। स्विचगियर पर अपना व्यक्तिगत ताला लगाएं। चाबी केवल आपके पास होनी चाहिए।">
+        <div class="step-num">३</div><div class="step-content"><h4>🔒 लॉक लगाएं (Lockout)</h4><p>अपना <strong>व्यक्तिगत ताला</strong> लगाएं। चाबी सिर्फ आपके पास। किसी को न दें।</p></div>
+      </div>
+      <div class="step" data-speak="LOTO चरण चार — लाल टैग लगाएं। टैग पर अपना नाम, तारीख, काम का विवरण लिखें। DO NOT ENERGIZE लिखना अनिवार्य है।">
+        <div class="step-num">४</div><div class="step-content"><h4>🏷️ टैग लगाएं (Tagout)</h4><p>लाल TAG पर <strong>नाम + तारीख + काम</strong> लिखें। "चालू न करें / DO NOT ENERGIZE" अनिवार्य।</p></div>
+      </div>
+      <div class="step" data-speak="LOTO चरण पाँच — वोल्टेज जाँचें। मल्टीमीटर से सभी टर्मिनल पर जाँचें कि वोल्टेज शून्य है। कभी अनुमान न लगाएं — हमेशा जाँचें।">
+        <div class="step-num">५</div><div class="step-content"><h4>🔬 Verify Zero Energy</h4><p>Multimeter से <strong>सभी टर्मिनल पर 0V जाँचें</strong>। अनुमान न लगाएं — हमेशा जाँचें।</p></div>
+      </div>
+      <div class="step" data-speak="LOTO चरण छह — काम शुरू करें। अब सुरक्षित तरीके से काम करें। काम खत्म होने पर ताला और टैग खोलें। बिजली वापस चालू करें।">
+        <div class="step-num">६</div><div class="step-content"><h4>✅ काम करें — और बहाली</h4><p>काम खत्म होने पर <strong>ताला + टैग हटाएं</strong>। फिर बिजली चालू करें।</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════
+     TAB 3: PPE
+════════════════════════ -->
+<div id="page-ppe" class="tool-page">
+  <div class="section fade-in">
+    <div class="section-title" data-speak="विद्युत कार्य के लिए PPE। बिजली का काम करते समय इंसुलेटेड PPE पहनना अनिवार्य है। सामान्य दस्ताने और PPE काफी नहीं हैं — विशेष इंसुलेटेड उपकरण चाहिए।">🦺 विद्युत कार्य के लिए <span class="safe">PPE</span></div>
+    <p class="section-subtitle">इंसुलेटेड PPE — बिना इनके काम बंद करें</p>
+    <div class="divider"></div>
+
+    <div class="ppe-grid">
+      <div class="ppe-item" data-speak="इंसुलेटेड ग्लव्स — रबर के विशेष दस्ताने जो बिजली को नहीं जाने देते। Class 0 से Class 4 तक होते हैं। Class 0 — 1000 वोल्ट तक। IEC 60903 मानक।"><span class="ppe-icon">🧤</span><div class="ppe-name">इंसुलेटेड ग्लव्स<br><small style="color:var(--text-muted);font-size:10px;">IEC 60903</small></div></div>
+      <div class="ppe-item" data-speak="डाइइलेक्ट्रिक शूज — विशेष रबर तलवे वाले जूते जो बिजली को ज़मीन से रोकते हैं। स्टील टो नहीं — रबर सोल अनिवार्य।"><span class="ppe-icon">👟</span><div class="ppe-name">डाइइलेक्ट्रिक शूज<br><small style="color:var(--text-muted);font-size:10px;">Rubber Sole</small></div></div>
+      <div class="ppe-item" data-speak="हेलमेट — नॉन-कंडक्टिंग हेलमेट। धातु वाला हेलमेट बिजली के काम के लिए नहीं। HDPE या ABS हेलमेट पहनें। IS 2925 Class E।"><span class="ppe-icon">⛑️</span><div class="ppe-name">नॉन-कंडक्टिंग हेलमेट<br><small style="color:var(--text-muted);font-size:10px;">Class E</small></div></div>
+      <div class="ppe-item" data-speak="आर्क फ्लैश सूट — उच्च वोल्टेज काम के लिए विशेष सुरक्षा सूट। यह आर्क फ्लैश की गर्मी से बचाता है।"><span class="ppe-icon">🛡️</span><div class="ppe-name">Arc Flash Suit<br><small style="color:var(--text-muted);font-size:10px;">HT Work</small></div></div>
+      <div class="ppe-item" data-speak="फेस शील्ड — पूरे चेहरे की सुरक्षा। आर्क फ्लैश और चिंगारियों से बचाव।"><span class="ppe-icon">🥽</span><div class="ppe-name">फेस शील्ड<br><small style="color:var(--text-muted);font-size:10px;">Arc Rated</small></div></div>
+      <div class="ppe-item" data-speak="इंसुलेटेड टूल्स — सभी पेचकस, प्लायर, और स्पैनर इंसुलेटेड होने चाहिए। IEC 60900 — 1000 वोल्ट रेटेड।"><span class="ppe-icon">🔧</span><div class="ppe-name">इंसुलेटेड टूल्स<br><small style="color:var(--text-muted);font-size:10px;">IEC 60900</small></div></div>
+      <div class="ppe-item" data-speak="मल्टीमीटर — वोल्टेज जाँचने का उपकरण। CAT III या CAT IV रेटेड मल्टीमीटर उपयोग करें।"><span class="ppe-icon">🔬</span><div class="ppe-name">मल्टीमीटर<br><small style="color:var(--text-muted);font-size:10px;">CAT III/IV</small></div></div>
+      <div class="ppe-item" data-speak="रिफ्लेक्टिव वेस्ट — काम की जगह पर दिखाई देने के लिए।"><span class="ppe-icon">🦺</span><div class="ppe-name">रिफ्लेक्टिव वेस्ट<br><small style="color:var(--text-muted);font-size:10px;">Hi-Viz</small></div></div>
+    </div>
+
+    <!-- Insulated tools diagram -->
+    <div class="svg-box" data-speak="इंसुलेटेड उपकरण पहचान। IEC 60900 चिह्न वाले उपकरण 1000 वोल्ट तक सुरक्षित हैं। नारंगी और पीले रंग की पट्टी वाले हैंडल पहचान हैं। हर उपकरण पर डबल ट्रायएंगल चिह्न होना चाहिए।">
+      <svg viewBox="0 0 680 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+        <rect width="680" height="200" fill="#141828" rx="12"/>
+        <text x="340" y="24" font-family="Noto Sans Devanagari" font-size="13" fill="#7DF9FF" text-anchor="middle" font-weight="bold">इंसुलेटेड टूल्स — पहचान और मानक</text>
+
+        <!-- Screwdriver insulated -->
+        <g transform="translate(80,100)">
+          <rect x="-8" y="-60" width="16" height="80" rx="4" fill="#FF6B00"/>
+          <rect x="-8" y="-60" width="16" height="30" rx="4" fill="#FFD60A"/>
+          <rect x="-3" y="20" width="6" height="30" rx="2" fill="#888"/>
+          <rect x="-1.5" y="50" width="3" height="10" rx="1" fill="#ccc"/>
+          <text x="0" y="80" font-family="Noto Sans Devanagari" font-size="8.5" fill="#7DF9FF" text-anchor="middle">Screwdriver</text>
+          <!-- 1000V symbol -->
+          <rect x="-22" y="-75" width="44" height="16" rx="4" fill="rgba(125,249,255,0.1)" stroke="rgba(125,249,255,0.4)" stroke-width="1"/>
+          <text x="0" y="-64" font-family="sans-serif" font-size="8" fill="#7DF9FF" text-anchor="middle">1000V ✔</text>
+        </g>
+
+        <!-- Pliers insulated -->
+        <g transform="translate(210,100)">
+          <rect x="-12" y="-55" width="24" height="60" rx="5" fill="#E63946"/>
+          <rect x="-12" y="-55" width="24" height="25" rx="5" fill="#FFD60A"/>
+          <!-- Plier head -->
+          <rect x="-18" y="-80" width="36" height="28" rx="6" fill="#777"/>
+          <rect x="-14" y="-76" width="14" height="20" rx="3" fill="#555"/>
+          <rect x="2" y="-76" width="14" height="20" rx="3" fill="#555"/>
+          <text x="0" y="20" font-family="Noto Sans Devanagari" font-size="8.5" fill="#7DF9FF" text-anchor="middle">Pliers</text>
+          <rect x="-22" y="-95" width="44" height="16" rx="4" fill="rgba(125,249,255,0.1)" stroke="rgba(125,249,255,0.4)" stroke-width="1"/>
+          <text x="0" y="-84" font-family="sans-serif" font-size="8" fill="#7DF9FF" text-anchor="middle">1000V ✔</text>
+        </g>
+
+        <!-- Spanner insulated -->
+        <g transform="translate(340,105)">
+          <rect x="-10" y="-50" width="20" height="70" rx="5" fill="#FF6B00"/>
+          <rect x="-10" y="-50" width="20" height="28" rx="5" fill="#2EC4B6"/>
+          <!-- Spanner head -->
+          <ellipse cx="0" cy="-60" rx="18" ry="12" fill="#888"/>
+          <ellipse cx="0" cy="-60" rx="10" ry="6" fill="#555"/>
+          <text x="0" y="30" font-family="Noto Sans Devanagari" font-size="8.5" fill="#7DF9FF" text-anchor="middle">Spanner</text>
+          <rect x="-22" y="-80" width="44" height="16" rx="4" fill="rgba(125,249,255,0.1)" stroke="rgba(125,249,255,0.4)" stroke-width="1"/>
+          <text x="0" y="-69" font-family="sans-serif" font-size="8" fill="#7DF9FF" text-anchor="middle">1000V ✔</text>
+        </g>
+
+        <!-- Voltage tester -->
+        <g transform="translate(460,100)">
+          <rect x="-10" y="-55" width="20" height="70" rx="5" fill="#1a3060"/>
+          <rect x="-10" y="-55" width="20" height="24" rx="5" fill="#253080"/>
+          <!-- Screen -->
+          <rect x="-8" y="-50" width="16" height="12" rx="2" fill="#0a1a30"/>
+          <text x="0" y="-42" font-family="sans-serif" font-size="7" fill="#7DF9FF" text-anchor="middle">0V</text>
+          <circle cx="0" cy="-15" r="4" fill="#2EC4B6"/>
+          <rect x="-1.5" y="15" width="3" height="15" rx="1" fill="#E63946"/>
+          <text x="0" y="22" font-family="Noto Sans Devanagari" font-size="8.5" fill="#7DF9FF" text-anchor="middle">Voltage</text>
+          <text x="0" y="32" font-family="Noto Sans Devanagari" font-size="8.5" fill="#7DF9FF" text-anchor="middle">Tester</text>
+          <rect x="-26" y="-72" width="52" height="16" rx="4" fill="rgba(46,196,182,0.1)" stroke="rgba(46,196,182,0.4)" stroke-width="1"/>
+          <text x="0" y="-61" font-family="Noto Sans Devanagari" font-size="7.5" fill="#2EC4B6" text-anchor="middle">काम से पहले जाँचें</text>
+        </g>
+
+        <!-- Gloves insulated -->
+        <g transform="translate(580,100)">
+          <!-- Glove shape -->
+          <path d="M -20 30 Q -25 0 -20 -30 Q -15 -55 0 -55 Q 15 -55 20 -30 Q 25 0 20 30 Z" fill="#E63946"/>
+          <path d="M -15 20 Q -18 0 -15 -20 Q -12 -42 0 -42 Q 12 -42 15 -20 Q 18 0 15 20 Z" fill="#cc1122"/>
+          <!-- Fingers -->
+          <ellipse cx="-18" cy="-50" rx="5" ry="10" fill="#E63946"/>
+          <ellipse cx="-8" cy="-58" rx="5" ry="10" fill="#E63946"/>
+          <ellipse cx="2" cy="-60" rx="5" ry="10" fill="#E63946"/>
+          <ellipse cx="12" cy="-58" rx="5" ry="10" fill="#E63946"/>
+          <text x="0" y="50" font-family="Noto Sans Devanagari" font-size="8.5" fill="#7DF9FF" text-anchor="middle">इंसुलेटेड</text>
+          <text x="0" y="62" font-family="Noto Sans Devanagari" font-size="8.5" fill="#7DF9FF" text-anchor="middle">Gloves</text>
+          <rect x="-28" y="-78" width="56" height="16" rx="4" fill="rgba(230,57,70,0.1)" stroke="rgba(230,57,70,0.4)" stroke-width="1"/>
+          <text x="0" y="-67" font-family="sans-serif" font-size="8" fill="#ff8a80" text-anchor="middle">IEC 60903</text>
+        </g>
+
+        <!-- IEC mark explanation -->
+        <rect x="20" y="158" width="640" height="30" rx="6" fill="rgba(255,214,10,0.07)" stroke="rgba(255,214,10,0.2)" stroke-width="1"/>
+        <text x="340" y="170" font-family="Noto Sans Devanagari" font-size="9" fill="#FFD60A" text-anchor="middle" font-weight="bold">⚠ पहचान चिह्न:</text>
+        <text x="340" y="183" font-family="Noto Sans Devanagari" font-size="8.5" fill="#c8a96e" text-anchor="middle">🔶 नारंगी/पीले हैंडल + "1000V" चिह्न + ◇◇ (Double Triangle IEC 60900) = असली इंसुलेटेड टूल</text>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════
+     TAB 4: WIRING & PANEL
+════════════════════════ -->
+<div id="page-wiring" class="tool-page">
+  <div class="section fade-in">
+    <div class="section-title" data-speak="वायरिंग और पैनल बोर्ड सुरक्षा। घरेलू और औद्योगिक वायरिंग में सुरक्षा के नियम। तीन तार — लाल (फेज), काला (न्यूट्रल), और हरा (अर्थ) — हर तार का काम अलग है।">🔌 वायरिंग और <span class="hi">पैनल सुरक्षा</span></div>
+    <div class="divider"></div>
+
+    <!-- Wiring color code SVG -->
+    <div class="svg-box" data-speak="भारतीय वायरिंग रंग संकेत। लाल तार — फेज या लाइव। काला तार — न्यूट्रल। हरा या पीला-हरा — अर्थ। तीन फेज में — लाल, पीला, और नीला — तीन फेज। इन्हें कभी आपस में न बदलें। अर्थ तार हमेशा जोड़ें।">
+      <svg viewBox="0 0 680 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+        <rect width="680" height="280" fill="#141828" rx="12"/>
+        <text x="340" y="26" font-family="Noto Sans Devanagari" font-size="14" fill="#7DF9FF" text-anchor="middle" font-weight="bold">भारतीय विद्युत वायरिंग — रंग संकेत (IS 732)</text>
+
+        <!-- Single phase wires left -->
+        <text x="170" y="55" font-family="Noto Sans Devanagari" font-size="11" fill="#c8a96e" text-anchor="middle" font-weight="bold">Single Phase (1φ)</text>
+
+        <!-- Phase wire -->
+        <line x1="40" y1="85" x2="300" y2="85" stroke="#E63946" stroke-width="8" stroke-linecap="round"/>
+        <rect x="40" y="72" width="260" height="16" rx="4" fill="#E63946" opacity="0.15"/>
+        <text x="165" y="80" font-family="Noto Sans Devanagari" font-size="9" fill="white" text-anchor="middle" font-weight="bold">फेज (Phase/Line)</text>
+        <rect x="42" y="100" width="120" height="18" rx="5" fill="rgba(230,57,70,0.15)" stroke="rgba(230,57,70,0.4)" stroke-width="1"/>
+        <text x="102" y="112" font-family="Noto Sans Devanagari" font-size="9" fill="#ff8a80" text-anchor="middle">लाल = 230V खतरनाक ⚡</text>
+
+        <!-- Neutral wire -->
+        <line x1="40" y1="140" x2="300" y2="140" stroke="#333" stroke-width="8" stroke-linecap="round"/>
+        <rect x="40" y="127" width="260" height="16" rx="4" fill="#555" opacity="0.3"/>
+        <text x="165" y="135" font-family="Noto Sans Devanagari" font-size="9" fill="white" text-anchor="middle" font-weight="bold">न्यूट्रल (Neutral)</text>
+        <rect x="42" y="155" width="120" height="18" rx="5" fill="rgba(100,100,100,0.2)" stroke="rgba(100,100,100,0.4)" stroke-width="1"/>
+        <text x="102" y="167" font-family="Noto Sans Devanagari" font-size="9" fill="#aaa" text-anchor="middle">काला/नीला = 0V</text>
+
+        <!-- Earth wire -->
+        <line x1="40" y1="195" x2="300" y2="195" stroke="#2EC4B6" stroke-width="8" stroke-linecap="round"/>
+        <rect x="40" y="182" width="260" height="16" rx="4" fill="#2EC4B6" opacity="0.12"/>
+        <text x="165" y="190" font-family="Noto Sans Devanagari" font-size="9" fill="white" text-anchor="middle" font-weight="bold">अर्थ (Earth/Ground)</text>
+        <rect x="42" y="210" width="160" height="18" rx="5" fill="rgba(46,196,182,0.12)" stroke="rgba(46,196,182,0.35)" stroke-width="1"/>
+        <text x="122" y="222" font-family="Noto Sans Devanagari" font-size="9" fill="#7DF9FF" text-anchor="middle">हरा/पीला-हरा = सुरक्षा ✔</text>
+
+        <!-- 3 Phase right side -->
+        <text x="510" y="55" font-family="Noto Sans Devanagari" font-size="11" fill="#c8a96e" text-anchor="middle" font-weight="bold">Three Phase (3φ)</text>
+
+        <line x1="360" y1="80" x2="640" y2="80" stroke="#E63946" stroke-width="6" stroke-linecap="round"/>
+        <text x="500" y="75" font-family="Noto Sans Devanagari" font-size="9" fill="#ff8a80" text-anchor="middle" font-weight="bold">R Phase — लाल (415V)</text>
+
+        <line x1="360" y1="110" x2="640" y2="110" stroke="#FFD60A" stroke-width="6" stroke-linecap="round"/>
+        <text x="500" y="125" font-family="Noto Sans Devanagari" font-size="9" fill="#FFD60A" text-anchor="middle" font-weight="bold">Y Phase — पीला</text>
+
+        <line x1="360" y1="145" x2="640" y2="145" stroke="#4fc3f7" stroke-width="6" stroke-linecap="round"/>
+        <text x="500" y="160" font-family="Noto Sans Devanagari" font-size="9" fill="#4fc3f7" text-anchor="middle" font-weight="bold">B Phase — नीला</text>
+
+        <line x1="360" y1="180" x2="640" y2="180" stroke="#555" stroke-width="6" stroke-linecap="round"/>
+        <text x="500" y="195" font-family="Noto Sans Devanagari" font-size="9" fill="#aaa" text-anchor="middle" font-weight="bold">Neutral — काला/ग्रे</text>
+
+        <line x1="360" y1="215" x2="640" y2="215" stroke="#2EC4B6" stroke-width="6" stroke-linecap="round"/>
+        <text x="500" y="230" font-family="Noto Sans Devanagari" font-size="9" fill="#7DF9FF" text-anchor="middle" font-weight="bold">Earth — हरा/पीला-हरा ✔</text>
+
+        <!-- Warning bottom -->
+        <rect x="20" y="248" width="640" height="24" rx="6" fill="rgba(230,57,70,0.10)" stroke="rgba(230,57,70,0.3)" stroke-width="1"/>
+        <text x="340" y="264" font-family="Noto Sans Devanagari" font-size="10" fill="#E63946" text-anchor="middle" font-weight="bold">⚠ अर्थ तार कभी न हटाएं — यही आपको बचाता है! Earthing = जीवन रक्षा</text>
+      </svg>
+    </div>
+
+    <div class="cards-grid">
+      <div class="card electric" data-speak="ELCB — Earth Leakage Circuit Breaker। यह 30 मिलीएम्पियर रिसाव होने पर 30 मिलीसेकंड में बिजली बंद कर देता है। यह जानलेवा झटके से बचाता है। हर पैनल में ELCB अनिवार्य है।">
+        <div class="card-icon">🛡️</div>
+        <h3>ELCB / RCD</h3>
+        <p><strong>30mA रिसाव होने पर 0.03 सेकंड</strong> में बिजली काटता है। हर पैनल में अनिवार्य। IS 12640 मानक।</p>
+      </div>
+      <div class="card warning" data-speak="MCB — Miniature Circuit Breaker। ओवरलोड और शॉर्ट सर्किट से बचाता है। MCB को टेप से जोड़ना सख्त मना है।">
+        <div class="card-icon">⚡</div>
+        <h3>MCB / MCCB</h3>
+        <p>ओवरलोड और शॉर्ट सर्किट से बचाव। <strong>MCB को टेप से बंद करना = अपराध।</strong></p>
+      </div>
+      <div class="card safe" data-speak="अर्थिंग — यह सबसे ज़रूरी है। अर्थिंग के बिना बिजली का रिसाव होने पर झटका लगता है। सही अर्थिंग होने पर ELCB ट्रिप हो जाती है।">
+        <div class="card-icon">🌍</div>
+        <h3>Earthing अनिवार्य</h3>
+        <p><strong>अर्थिंग = जीवन रक्षा।</strong> बिना अर्थिंग के ELCB काम नहीं करती। IS 3043 मानक।</p>
+      </div>
+      <div class="card danger" data-speak="ओवरलोडिंग से बचें। एक सॉकेट में एक्सटेंशन पर एक्सटेंशन लगाना बहुत खतरनाक है। ऑक्टोपस कनेक्शन कभी न बनाएं।">
+        <div class="card-icon">🔌</div>
+        <h3>Octopus Connection नहीं</h3>
+        <p>एक सॉकेट में अनेक प्लग <strong>= ओवरलोड = आग।</strong> हर उपकरण के लिए सही सर्किट उपयोग करें।</p>
+      </div>
+    </div>
+
+    <div class="section-sep" style="margin:30px 0;"></div>
+
+    <div class="do-dont-grid">
+      <div class="do-block" data-speak="वायरिंग में यह करें। सही आकार की केबल उपयोग करें। सभी जोड़ अच्छे से इंसुलेट करें। ELCB और MCB हर सर्किट पर लगाएं। Earthing की नियमित जाँच करें। लाइसेंस प्राप्त इलेक्ट्रीशियन से काम करवाएं।">
+        <div class="do-header">✅ करें</div>
+        <ul>
+          <li>सही आकार की केबल चुनें</li>
+          <li>सभी जोड़ इंसुलेट करें</li>
+          <li>ELCB + MCB हर सर्किट पर</li>
+          <li>Earthing नियमित जाँचें</li>
+          <li>लाइसेंस धारक इलेक्ट्रीशियन</li>
+          <li>केबल routing से दूर रखें पानी</li>
+          <li>सही IP rating के फिटिंग लगाएं</li>
+        </ul>
+      </div>
+      <div class="dont-block" data-speak="वायरिंग में यह न करें। क्षतिग्रस्त केबल पर टेप लगाकर उपयोग न करें। MCB बाईपास न करें। अर्थ तार न हटाएं। एक सर्किट पर अधिक लोड न दें। पानी के पास खुले तार न छोड़ें।">
+        <div class="dont-header">❌ न करें</div>
+        <ul>
+          <li>टूटी केबल पर टेप लगाकर उपयोग नहीं</li>
+          <li>MCB को bypass न करें</li>
+          <li>अर्थ तार कभी न हटाएं</li>
+          <li>एक सर्किट पर अधिक लोड नहीं</li>
+          <li>पानी के पास खुले तार नहीं</li>
+          <li>Temporary wiring permanent नहीं</li>
+          <li>बिना EI license वायरिंग नहीं</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════
+     TAB 5: EMERGENCY
+════════════════════════ -->
+<div id="page-emergency" class="tool-page">
+  <div class="section fade-in">
+    <div class="section-title" data-speak="विद्युत आपात स्थिति में क्या करें। बिजली से दुर्घटना होने पर सबसे पहले बिजली बंद करें। घायल को छूने से पहले बिजली बंद होनी चाहिए — वर्ना आपको भी झटका लगेगा।">🚨 <span class="hi">विद्युत आपात</span> — क्या करें?</div>
+    <div class="divider"></div>
+
+    <div class="danger-alert" data-speak="सबसे ज़रूरी बात! बिजली का झटका लगे व्यक्ति को छूने से पहले बिजली बंद करें। अगर बिजली बंद नहीं होती तो लकड़ी या सूखी रस्सी से व्यक्ति को तार से अलग करें। कभी सीधे हाथ से न छुएं।">
+      <div class="danger-alert-icon">⚠️</div>
+      <div>
+        <h3>पहले बिजली बंद करें!</h3>
+        <p>झटका लगे व्यक्ति को <strong>बिजली बंद किए बिना कभी न छुएं</strong> — आपको भी झटका लगेगा! पहले MCB/ELCB बंद करें।</p>
+      </div>
+    </div>
+
+    <!-- Emergency flow SVG -->
+    <div class="svg-box" data-speak="विद्युत दुर्घटना में सही कदम। एक — बिजली बंद करो। दो — सुरक्षित होने पर घायल को अलग करो। तीन — 112 पर कॉल करो। चार — CPR दो अगर प्रशिक्षित हो। पाँच — जलन को ठंडे पानी से ठंडा करो। छह — सुपरवाइज़र को सूचित करो।">
+      <svg viewBox="0 0 680 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+        <rect width="680" height="200" fill="#141828" rx="12"/>
+        <text x="340" y="22" font-family="Noto Sans Devanagari" font-size="13" fill="#E63946" text-anchor="middle" font-weight="bold">⚡ विद्युत दुर्घटना — तुरंत करें</text>
+        <!-- Step boxes flow -->
+        <rect x="10" y="38" width="96" height="70" rx="8" fill="rgba(230,57,70,0.12)" stroke="rgba(230,57,70,0.5)" stroke-width="2"/>
+        <text x="58" y="62" font-size="20" text-anchor="middle">🔌</text>
+        <text x="58" y="78" font-family="Noto Sans Devanagari" font-size="8.5" fill="#E63946" text-anchor="middle" font-weight="bold">बिजली बंद</text>
+        <text x="58" y="90" font-family="Noto Sans Devanagari" font-size="8" fill="#ff8a80" text-anchor="middle">MCB/Switch OFF</text>
+        <rect x="22" y="42" width="18" height="18" rx="9" fill="#E63946"/><text x="31" y="54" font-family="sans-serif" font-size="10" fill="white" text-anchor="middle" font-weight="bold">1</text>
+
+        <polygon points="108,73 118,69 118,77" fill="#E63946"/>
+        <line x1="106" y1="73" x2="118" y2="73" stroke="#E63946" stroke-width="2"/>
+
+        <rect x="120" y="38" width="96" height="70" rx="8" fill="rgba(255,107,0,0.10)" stroke="rgba(255,107,0,0.4)" stroke-width="1.5"/>
+        <text x="168" y="62" font-size="20" text-anchor="middle">🧤</text>
+        <text x="168" y="78" font-family="Noto Sans Devanagari" font-size="8.5" fill="#FF9A40" text-anchor="middle" font-weight="bold">सुरक्षित अलग</text>
+        <text x="168" y="90" font-family="Noto Sans Devanagari" font-size="8" fill="#ffd4aa" text-anchor="middle">लकड़ी/सूखी रस्सी</text>
+        <rect x="132" y="42" width="18" height="18" rx="9" fill="#FF6B00"/><text x="141" y="54" font-family="sans-serif" font-size="10" fill="white" text-anchor="middle" font-weight="bold">2</text>
+
+        <polygon points="218,73 228,69 228,77" fill="#FF6B00"/>
+        <line x1="216" y1="73" x2="228" y2="73" stroke="#FF6B00" stroke-width="2"/>
+
+        <rect x="230" y="38" width="96" height="70" rx="8" fill="rgba(230,57,70,0.10)" stroke="rgba(230,57,70,0.4)" stroke-width="1.5"/>
+        <text x="278" y="62" font-size="20" text-anchor="middle">📞</text>
+        <text x="278" y="78" font-family="Noto Sans Devanagari" font-size="8.5" fill="#E63946" text-anchor="middle" font-weight="bold">112 कॉल करें</text>
+        <text x="278" y="90" font-family="Noto Sans Devanagari" font-size="8" fill="#ff8a80" text-anchor="middle">एम्बुलेंस</text>
+        <rect x="242" y="42" width="18" height="18" rx="9" fill="#E63946"/><text x="251" y="54" font-family="sans-serif" font-size="10" fill="white" text-anchor="middle" font-weight="bold">3</text>
+
+        <polygon points="328,73 338,69 338,77" fill="#E63946"/>
+        <line x1="326" y1="73" x2="338" y2="73" stroke="#E63946" stroke-width="2"/>
+
+        <rect x="340" y="38" width="96" height="70" rx="8" fill="rgba(125,249,255,0.06)" stroke="rgba(125,249,255,0.3)" stroke-width="1.5"/>
+        <text x="388" y="62" font-size="20" text-anchor="middle">💗</text>
+        <text x="388" y="78" font-family="Noto Sans Devanagari" font-size="8.5" fill="#7DF9FF" text-anchor="middle" font-weight="bold">CPR दें</text>
+        <text x="388" y="90" font-family="Noto Sans Devanagari" font-size="8" fill="#b2f5ff" text-anchor="middle">यदि प्रशिक्षित हों</text>
+        <rect x="352" y="42" width="18" height="18" rx="9" fill="#7DF9FF"/><text x="361" y="54" font-family="sans-serif" font-size="10" fill="#0d1520" text-anchor="middle" font-weight="bold">4</text>
+
+        <polygon points="438,73 448,69 448,77" fill="#7DF9FF"/>
+        <line x1="436" y1="73" x2="448" y2="73" stroke="#7DF9FF" stroke-width="2"/>
+
+        <rect x="450" y="38" width="96" height="70" rx="8" fill="rgba(46,196,182,0.08)" stroke="rgba(46,196,182,0.35)" stroke-width="1.5"/>
+        <text x="498" y="62" font-size="20" text-anchor="middle">🧊</text>
+        <text x="498" y="78" font-family="Noto Sans Devanagari" font-size="8.5" fill="#2EC4B6" text-anchor="middle" font-weight="bold">जलन ठंडी करें</text>
+        <text x="498" y="90" font-family="Noto Sans Devanagari" font-size="8" fill="#b2f5ff" text-anchor="middle">ठंडा पानी 10 मिनट</text>
+        <rect x="462" y="42" width="18" height="18" rx="9" fill="#2EC4B6"/><text x="471" y="54" font-family="sans-serif" font-size="10" fill="#0d1520" text-anchor="middle" font-weight="bold">5</text>
+
+        <polygon points="548,73 558,69 558,77" fill="#2EC4B6"/>
+        <line x1="546" y1="73" x2="558" y2="73" stroke="#2EC4B6" stroke-width="2"/>
+
+        <rect x="560" y="38" width="112" height="70" rx="8" fill="rgba(46,196,182,0.10)" stroke="rgba(46,196,182,0.45)" stroke-width="2"/>
+        <text x="616" y="62" font-size="20" text-anchor="middle">📝</text>
+        <text x="616" y="78" font-family="Noto Sans Devanagari" font-size="8.5" fill="#2EC4B6" text-anchor="middle" font-weight="bold">रिपोर्ट भरें</text>
+        <text x="616" y="90" font-family="Noto Sans Devanagari" font-size="8" fill="#b2f5ff" text-anchor="middle">Incident Report</text>
+        <rect x="572" y="42" width="18" height="18" rx="9" fill="#2EC4B6"/><text x="581" y="54" font-family="sans-serif" font-size="10" fill="#0d1520" text-anchor="middle" font-weight="bold">6</text>
+
+        <!-- Critical note -->
+        <rect x="10" y="120" width="660" height="26" rx="6" fill="rgba(230,57,70,0.10)" stroke="rgba(230,57,70,0.4)" stroke-width="1.5"/>
+        <text x="340" y="137" font-family="Noto Sans Devanagari" font-size="10" fill="#E63946" text-anchor="middle" font-weight="bold">🔴 बिजली की आग — CO₂ या Dry Powder अग्निशामक उपयोग करें — पानी कभी नहीं!</text>
+
+        <!-- Fire type boxes -->
+        <rect x="10" y="155" width="315" height="36" rx="6" fill="rgba(46,196,182,0.08)" stroke="rgba(46,196,182,0.3)" stroke-width="1"/>
+        <text x="167" y="170" font-family="Noto Sans Devanagari" font-size="10" fill="#2EC4B6" text-anchor="middle" font-weight="bold">✅ CO₂ अग्निशामक — बिजली आग के लिए सही</text>
+        <text x="167" y="184" font-family="Noto Sans Devanagari" font-size="8.5" fill="#b2f5ff" text-anchor="middle">बिजली बंद नहीं कर सकते तो भी सुरक्षित</text>
+
+        <rect x="340" y="155" width="330" height="36" rx="6" fill="rgba(230,57,70,0.08)" stroke="rgba(230,57,70,0.3)" stroke-width="1"/>
+        <text x="505" y="170" font-family="Noto Sans Devanagari" font-size="10" fill="#E63946" text-anchor="middle" font-weight="bold">❌ पानी कभी नहीं — बिजली आग पर पानी = मौत</text>
+        <text x="505" y="184" font-family="Noto Sans Devanagari" font-size="8.5" fill="#ff8a80" text-anchor="middle">पानी बिजली का संचालक है — झटका लगेगा</text>
+      </svg>
+    </div>
+
+    <div class="emergency-box" data-speak="विद्युत दुर्घटना में — याद रखें। पहले बिजली बंद करें। घायल को सुरक्षित तरीके से अलग करें। 112 पर कॉल करें। CPR दें अगर ज़रूरी हो। जलन को ठंडे पानी से ठंडा करें। बिजली की आग पर CO2 अग्निशामक उपयोग करें।">
+      <h2>🚨 विद्युत दुर्घटना में याद रखें</h2>
+      <p>हर सेकंड मायने रखता है — शांत रहें</p>
+      <div class="emergency-steps">
+        <div class="e-step"><div class="e-step-num">1</div>🔌 <strong>MCB/ELCB बंद करें</strong> — पहले बिजली काटें</div>
+        <div class="e-step"><div class="e-step-num">2</div>🧤 <strong>सुरक्षित तरीके से</strong> व्यक्ति को तार से अलग करें</div>
+        <div class="e-step"><div class="e-step-num">3</div>📞 <strong>112</strong> — एम्बुलेंस तुरंत बुलाएं</div>
+        <div class="e-step"><div class="e-step-num">4</div>💗 <strong>CPR</strong> — अगर प्रशिक्षित हों (30:2 अनुपात)</div>
+        <div class="e-step"><div class="e-step-num">5</div>🧊 जलन पर <strong>ठंडा पानी 10 मिनट</strong> — बर्फ नहीं</div>
+        <div class="e-step"><div class="e-step-num">6</div>🔥 बिजली आग = <strong>CO₂ अग्निशामक</strong> — पानी कभी नहीं</div>
+        <div class="e-step"><div class="e-step-num">7</div>📢 <strong>सुपरवाइज़र + Incident Report</strong></div>
+      </div>
+    </div>
+
+    <div class="section-sep" style="margin:30px 0;"></div>
+
+    <!-- Laws section -->
+    <div style="background:linear-gradient(135deg,rgba(125,249,255,0.06),rgba(255,214,10,0.05));border:1px solid rgba(125,249,255,0.2);border-radius:16px;padding:24px;cursor:pointer;" data-speak="भारतीय विद्युत कानून। Indian Electricity Act 2003 और Central Electricity Authority Regulations 2010 के तहत हर इलेक्ट्रीशियन के पास लाइसेंस होना अनिवार्य है। बिना लाइसेंस विद्युत कार्य करना अपराध है। नियोक्ता को सुरक्षित विद्युत प्रणाली प्रदान करना अनिवार्य है।">
+      <div style="font-size:15px;font-weight:800;color:var(--electric);margin-bottom:14px;">⚖️ भारतीय विद्युत कानून</div>
+      <div style="font-size:13px;color:var(--text-muted);line-height:2;">
+        ⚡ <strong style="color:var(--text);">Indian Electricity Act 2003</strong> — विद्युत सुरक्षा का मुख्य कानून<br>
+        📋 <strong style="color:var(--text);">CEA Regulations 2010</strong> — लाइसेंस अनिवार्य<br>
+        🏛️ <strong style="color:var(--text);">Factories Act 1948</strong> — धारा 36 — विद्युत खतरे<br>
+        📐 <strong style="color:var(--text);">IS 732 / IS 3043</strong> — वायरिंग और अर्थिंग मानक<br>
+        🌐 <strong style="color:var(--text);">ISO 45001:2018</strong> — व्यावसायिक सुरक्षा<br>
+        🔑 बिना EI (Electrical Inspector) License = <strong style="color:var(--yellow);">अपराध</strong><br>
+        🆘 असुरक्षित काम से <strong style="color:var(--yellow);">मना करने का अधिकार</strong> हर मजदूर को है
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════
+     TAB 6: QUIZ
+════════════════════════ -->
+<div id="page-quiz" class="tool-page">
+  <div class="section fade-in">
+    <div class="section-title">🧠 विद्युत सुरक्षा <span class="safe">क्विज़</span></div>
+    <p class="section-subtitle">सभी सवालों के जवाब दें — स्कोर देखें</p>
+    <div class="divider"></div>
+
+    <div class="quiz-card" data-speak="सवाल एक — मात्र कितने मिलीएम्पियर की धारा दिल रोक सकती है? विकल्प — 500 मिलीएम्पियर, 100 मिलीएम्पियर, 50 मिलीएम्पियर, 10 मिलीएम्पियर।">
+      <div class="quiz-q">1. ❓ कितनी धारा (Current) दिल रोक सकती है?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(this,false,'❌ गलत! इससे बहुत कम करंट भी जानलेवा है।','q1')">A. 500 mA</button>
+        <button class="quiz-option" onclick="answer(this,false,'❌ नहीं! 50mA भी काफी है।','q1')">B. 100 mA</button>
+        <button class="quiz-option" onclick="answer(this,true,'✅ सही! 50mA (0.05A) दिल को रोक सकती है — बहुत कम मात्रा!','q1')">C. 50 mA ✔</button>
+        <button class="quiz-option" onclick="answer(this,false,'❌ 10mA से मांसपेशियाँ जकड़ती हैं लेकिन 50mA दिल रोकती है।','q1')">D. 10 mA</button>
+      </div>
+      <div class="quiz-feedback" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-card" data-speak="सवाल दो — LOTO का पूरा नाम क्या है? विकल्प — Lock Out Tag Out, Light Out Turn Off, Lock Out Turn On, Line Out Tag Out।">
+      <div class="quiz-q">2. ❓ LOTO का पूरा अर्थ क्या है?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(this,true,'✅ सही! LOTO = Lockout Tagout — बिजली बंद करो, लॉक लगाओ, टैग लगाओ।','q2')">A. Lockout Tagout ✔</button>
+        <button class="quiz-option" onclick="answer(this,false,'❌ गलत! LOTO = Lockout Tagout है।','q2')">B. Light Out Turn Off</button>
+        <button class="quiz-option" onclick="answer(this,false,'❌ नहीं! LOTO = Lockout Tagout है।','q2')">C. Lock Out Turn On</button>
+        <button class="quiz-option" onclick="answer(this,false,'❌ गलत!','q2')">D. Line Out Tag Out</button>
+      </div>
+      <div class="quiz-feedback" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-card" data-speak="सवाल तीन — बिजली की आग लगने पर कौन सा अग्निशामक उपयोग करें? विकल्प — पानी, CO2, रेत, ABC Powder।">
+      <div class="quiz-q">3. ❓ बिजली की आग पर कौन सा अग्निशामक उपयोग करें?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(this,false,'❌ बहुत गलत! बिजली आग पर पानी = मौत। पानी बिजली का संचालक है।','q3')">A. पानी</button>
+        <button class="quiz-option" onclick="answer(this,true,'✅ सही! CO₂ अग्निशामक बिजली आग के लिए सुरक्षित है।','q3')">B. CO₂ ✔</button>
+        <button class="quiz-option" onclick="answer(this,false,'❌ रेत उचित नहीं — CO₂ सही है।','q3')">C. रेत</button>
+        <button class="quiz-option" onclick="answer(this,false,'❌ ABC Powder electrical fire के लिए नहीं — CO₂ उपयोग करें।','q3')">D. ABC Powder</button>
+      </div>
+      <div class="quiz-feedback" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-card" data-speak="सवाल चार — LOTO करने के बाद काम शुरू करने से पहले क्या करना चाहिए? विकल्प — सीधे काम शुरू करें, मल्टीमीटर से वोल्टेज जाँचें, लाइट जलाएं, सुपरवाइज़र को बुलाएं।">
+      <div class="quiz-q">4. ❓ LOTO के बाद काम शुरू करने से पहले क्या करें?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(this,false,'❌ नहीं! बिना जाँचे काम शुरू करना खतरनाक है।','q4')">A. सीधे काम शुरू करें</button>
+        <button class="quiz-option" onclick="answer(this,true,'✅ सही! Multimeter से सभी टर्मिनल पर 0V जाँचें।','q4')">B. Multimeter से 0V जाँचें ✔</button>
+        <button class="quiz-option" onclick="answer(this,false,'❌ यह LOTO का हिस्सा नहीं है।','q4')">C. लाइट जलाएं</button>
+        <button class="quiz-option" onclick="answer(this,false,'❌ Multimeter जाँच जरूरी है — सुपरवाइज़र से पहले।','q4')">D. सुपरवाइज़र को बुलाएं</button>
+      </div>
+      <div class="quiz-feedback" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-card" data-speak="सवाल पाँच — बिजली के काम में हरे रंग का तार क्या होता है? विकल्प — फेज, न्यूट्रल, अर्थ, स्विच लाइन।">
+      <div class="quiz-q">5. ❓ हरे/पीले-हरे रंग का तार क्या होता है?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(this,false,'❌ नहीं! फेज लाल रंग का होता है।','q5')">A. फेज (Phase)</button>
+        <button class="quiz-option" onclick="answer(this,false,'❌ न्यूट्रल काले/नीले रंग का होता है।','q5')">B. न्यूट्रल</button>
+        <button class="quiz-option" onclick="answer(this,true,'✅ सही! हरा/पीला-हरा = अर्थ (Earth) — यह सुरक्षा तार है।','q5')">C. अर्थ (Earth) ✔</button>
+        <button class="quiz-option" onclick="answer(this,false,'❌ गलत! हरा = अर्थ है।','q5')">D. स्विच लाइन</button>
+      </div>
+      <div class="quiz-feedback" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-card" data-speak="सवाल छह — बिजली का झटका लगे व्यक्ति को बचाने के लिए सबसे पहले क्या करें? विकल्प — सीधे छू लें, बिजली बंद करें फिर बचाएं, पानी डालें, चिल्लाएं।">
+      <div class="quiz-q">6. ❓ बिजली का झटका लगे व्यक्ति को बचाने के लिए पहले क्या करें?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="answer(this,false,'❌ बहुत खतरनाक! आपको भी झटका लगेगा।','q6')">A. सीधे छूकर हटाएं</button>
+        <button class="quiz-option" onclick="answer(this,true,'✅ सही! पहले MCB/Switch बंद करें — तभी घायल को बचाएं।','q6')">B. पहले बिजली बंद करें ✔</button>
+        <button class="quiz-option" onclick="answer(this,false,'❌ बिल्कुल गलत! पानी बिजली का संचालक है।','q6')">C. पानी डालें</button>
+        <button class="quiz-option" onclick="answer(this,false,'❌ चिल्लाने से समय बर्बाद होगा — पहले बिजली बंद करें।','q6')">D. ज़ोर से चिल्लाएं</button>
+      </div>
+      <div class="quiz-feedback" id="fb-q6"></div>
+    </div>
+
+    <div class="score-board" id="score-board" style="display:none;">
+      🏆 आपका स्कोर: <span id="score-text" style="color:var(--yellow);font-size:20px;"></span>
+      <div style="font-size:13px;color:var(--text-muted);margin-top:6px;" id="score-msg"></div>
+    </div>
+  </div>
+</div>
+
+<div class="warning-stripe"></div>
+
+<footer>
+  <div style="font-size:26px;margin-bottom:8px;">⚡</div>
+  <strong>विद्युत सुरक्षा — Safety First</strong>
+  <p style="margin-top:6px;">यह सामग्री EHS जागरूकता के लिए बनाई गई है। सभी विद्युत कार्य लाइसेंस प्राप्त इलेक्ट्रीशियन से करवाएं।</p>
+  <p style="margin-top:6px;color:#666;">निर्मित: <strong style="color:var(--yellow);">Ankit Verma</strong> — EHS Manager &nbsp;|&nbsp; mechanicalankitv@gmail.com</p>
+  <p style="margin-top:4px;font-size:11px;color:#444;">© 2026 · JN Lighting India LLP · Electricity Act 2003 · CEA Regulations 2010 · IS 732 · ISO 45001:2018</p>
+</footer>
+
+<script>
+// ── SPEECH ──
+let synth = window.speechSynthesis;
+let currentUtterance = null, currentEl = null, hindiVoice = null, voicesLoaded = false;
+
+function loadVoices() {
+  const voices = synth.getVoices();
+  hindiVoice = voices.find(v=>v.lang==='hi-IN')||voices.find(v=>v.lang.startsWith('hi'))||voices.find(v=>v.name.toLowerCase().includes('hindi'))||null;
+  voicesLoaded = true;
+}
+if (speechSynthesis.onvoiceschanged !== undefined) speechSynthesis.onvoiceschanged = loadVoices;
+loadVoices();
+
+const indicator = document.getElementById('audio-indicator');
+const audioLabel = document.getElementById('audio-label');
+
+function speak(text, el) {
+  if (!text) return;
+  if (synth.speaking) {
+    synth.cancel();
+    if (currentEl) currentEl.classList.remove('speaking-el');
+    if (currentEl === el) {
+      indicator.classList.remove('speaking');
+      audioLabel.textContent = 'छूएं — सुनें';
+      currentEl = null; return;
+    }
+  }
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'hi-IN'; u.rate = 0.88; u.pitch = 1.05; u.volume = 1;
+  if (!voicesLoaded) loadVoices();
+  if (hindiVoice) u.voice = hindiVoice;
+  u.onstart = () => {
+    indicator.classList.add('speaking');
+    audioLabel.textContent = '🔊 सुन रहे हैं...';
+    if (el) { el.classList.add('speaking-el'); currentEl = el; }
+  };
+  u.onend = u.onerror = () => {
+    indicator.classList.remove('speaking');
+    audioLabel.textContent = 'छूएं — सुनें';
+    if (el) el.classList.remove('speaking-el');
+    currentEl = null;
+  };
+  currentUtterance = u;
+  synth.speak(u);
+}
+
+document.body.addEventListener('click', (e) => {
+  let t = e.target, sp = null;
+  while (t && t !== document.body) {
+    if (t.dataset && t.dataset.speak) { sp = t; break; }
+    t = t.parentElement;
+  }
+  if (sp) { speak(sp.dataset.speak, sp); return; }
+  let sec = e.target;
+  while (sec && !sec.classList.contains('section')) sec = sec.parentElement;
+  if (sec) { const f = sec.querySelector('[data-speak]'); if (f) speak(f.dataset.speak, f); }
+});
+document.body.addEventListener('touchstart', () => { if (!voicesLoaded) loadVoices(); }, { passive: true });
+
+// ── TABS ──
+function showTab(tab) {
+  document.querySelectorAll('.tool-page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tool-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('page-' + tab).classList.add('active');
+  document.getElementById('tab-' + tab).classList.add('active');
+  if (synth.speaking) { synth.cancel(); indicator.classList.remove('speaking'); audioLabel.textContent='छूएं — सुनें'; if(currentEl){currentEl.classList.remove('speaking-el');currentEl=null;} }
+  window.scrollTo({ top: document.querySelector('.tool-nav').offsetTop - 10, behavior: 'smooth' });
+  document.querySelectorAll('#page-' + tab + ' .fade-in').forEach(el => {
+    el.classList.remove('visible');
+    setTimeout(() => el.classList.add('visible'), 100);
+  });
+}
+
+// ── QUIZ ──
+let scores = {}, totalQ = 6;
+function answer(btn, isCorrect, msg, qid) {
+  const card = btn.closest('.quiz-card');
+  if (card.querySelector('.correct') || card.querySelector('.wrong')) return;
+  card.querySelectorAll('.quiz-option').forEach(b => b.style.pointerEvents = 'none');
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  if (!isCorrect) card.querySelectorAll('.quiz-option').forEach(b => { if (b.textContent.includes('✔')) b.classList.add('correct'); });
+  const fb = document.getElementById('fb-' + qid);
+  fb.textContent = msg; fb.style.display = 'block';
+  fb.style.color = isCorrect ? 'var(--safe)' : 'var(--danger)';
+  speak(msg, fb);
+  scores[qid] = isCorrect ? 1 : 0;
+  if (Object.keys(scores).length === totalQ) showScore();
+}
+function showScore() {
+  const total = Object.values(scores).reduce((a,b)=>a+b,0);
+  const board = document.getElementById('score-board');
+  board.style.display = 'block';
+  document.getElementById('score-text').textContent = total + ' / ' + totalQ;
+  let msg = '';
+  if (total === totalQ) { msg='🏆 शाबाश! आप विद्युत सुरक्षा में माहिर हैं!'; speak('शाबाश! सभी सवाल सही! आप विद्युत सुरक्षा में माहिर हैं।', board); }
+  else if (total >= 4) { msg='👍 अच्छा! थोड़ा और अभ्यास करें।'; speak('अच्छा किया! लेकिन विद्युत सुरक्षा नियम दोबारा पढ़ें।', board); }
+  else { msg='📚 विद्युत सुरक्षा बहुत जरूरी है — दोबारा पढ़ें।'; speak('कुछ सवाल गलत हुए। विद्युत सुरक्षा नियम ध्यान से पढ़ें।', board); }
+  document.getElementById('score-msg').textContent = msg;
+}
+
+// ── FADE IN ──
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+// ── AUTO SPEAK HERO ──
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    speak('नमस्ते! जेएन लाइटिंग इंडिया एलएलपी के विद्युत सुरक्षा प्रशिक्षण में आपका स्वागत है। बिजली का काम सबसे खतरनाक है। ऊपर टैब से कोई भी विषय चुनें। कहीं भी छूएं और सुनें। सुरक्षित रहें!', document.querySelector('.hero'));
+  }, 1200);
+});
+</script>
+</body>
+</html>
